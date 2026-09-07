@@ -1,0 +1,2269 @@
+import { Project } from "@/types";
+
+export const INITIAL_PROJECTS: Project[] = [
+  {
+    "id": "proj-001",
+    "code": "PP-001",
+    "name": "East-West Highway Expansion",
+    "sector": "Roads",
+    "location": "Kolkata",
+    "manager": "Suresh Bannerjee",
+    "budget": 1200,
+    "spent": 850,
+    "startDate": "2024-01-01",
+    "plannedEndDate": "2025-12-31",
+    "expectedEndDate": "2026-03-31",
+    "progress": 42,
+    "plannedProgress": 65,
+    "description": "4-lane to 6-lane elevated corridor expansion connecting Howrah logistics hub with Eastern Metropolitan Bypass.",
+    "milestones": [
+      {
+        "id": "m1-1",
+        "name": "Feasibility & Survey",
+        "plannedDate": "2024-03-01",
+        "actualDate": "2024-03-01",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "NHAI"
+      },
+      {
+        "id": "m1-2",
+        "name": "Land Acquisition Clearance",
+        "plannedDate": "2024-06-01",
+        "status": "Delayed",
+        "delayDays": 28,
+        "owner": "Revenue Dept"
+      },
+      {
+        "id": "m1-3",
+        "name": "Flyover Pier Casting",
+        "plannedDate": "2024-11-01",
+        "status": "In Progress",
+        "delayDays": 14,
+        "owner": "L&T Infra"
+      },
+      {
+        "id": "m1-4",
+        "name": "Bituminous Pavement Laying",
+        "plannedDate": "2025-06-01",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "HCC"
+      },
+      {
+        "id": "m1-5",
+        "name": "Toll Plaza & Signalling",
+        "plannedDate": "2025-11-15",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "NHAI"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-1-1",
+        "name": "Land Acquisition Clearance",
+        "owner": "Revenue Dept",
+        "status": "Delayed",
+        "delayDays": 28,
+        "dependsOn": [],
+        "startDate": "2024-03-01",
+        "endDate": "2024-06-01"
+      },
+      {
+        "id": "act-1-2",
+        "name": "Utility & Power Cable Relocation",
+        "owner": "Electricity Board",
+        "status": "Delayed",
+        "delayDays": 14,
+        "dependsOn": [
+          "act-1-1"
+        ],
+        "startDate": "2024-06-01",
+        "endDate": "2024-08-15"
+      },
+      {
+        "id": "act-1-3",
+        "name": "Drainage Culvert Construction",
+        "owner": "PWD",
+        "status": "In Progress",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-1-2"
+        ],
+        "startDate": "2024-08-15",
+        "endDate": "2024-11-01"
+      },
+      {
+        "id": "act-1-4",
+        "name": "Main Carriageway Earthwork",
+        "owner": "NHAI",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-1-1"
+        ],
+        "startDate": "2024-07-01",
+        "endDate": "2024-12-01"
+      },
+      {
+        "id": "act-1-5",
+        "name": "Bituminous Surfacing Package",
+        "owner": "HCC",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-1-3",
+          "act-1-4"
+        ],
+        "startDate": "2025-01-01",
+        "endDate": "2025-06-01"
+      },
+      {
+        "id": "act-1-6",
+        "name": "Safety Barriers & Street Lighting",
+        "owner": "L&T Infra",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-1-5"
+        ],
+        "startDate": "2025-06-01",
+        "endDate": "2025-09-01"
+      }
+    ],
+    "risks": [
+      {
+        "id": "r1-1",
+        "title": "Land approval pending with Revenue Dept",
+        "severity": "Critical",
+        "probability": "High",
+        "impact": "High",
+        "owner": "Revenue Dept",
+        "status": "Open",
+        "recommendedAction": "Escalate to department head immediately and fast-track rehabilitation compensation"
+      },
+      {
+        "id": "r1-2",
+        "title": "Utility cable relocation delay at KM 14",
+        "severity": "High",
+        "probability": "High",
+        "impact": "Medium",
+        "owner": "Electricity Board",
+        "status": "Open",
+        "recommendedAction": "Issue joint site inspection order with CESC"
+      },
+      {
+        "id": "r1-3",
+        "title": "Monsoon waterlogging near culverts",
+        "severity": "Medium",
+        "probability": "Medium",
+        "impact": "Medium",
+        "owner": "PWD",
+        "status": "Mitigating",
+        "recommendedAction": "Deploy high-capacity dewatering pumps"
+      }
+    ],
+    "departments": [
+      "Revenue Dept",
+      "Electricity Board",
+      "PWD",
+      "NHAI",
+      "L&T Infra",
+      "HCC"
+    ]
+  },
+  {
+    "id": "proj-002",
+    "code": "PP-002",
+    "name": "Central Hospital Construction",
+    "sector": "Healthcare",
+    "location": "Bhubaneswar",
+    "manager": "Dr. Ananya Ray",
+    "budget": 650,
+    "spent": 420,
+    "startDate": "2024-02-01",
+    "plannedEndDate": "2025-08-30",
+    "expectedEndDate": "2025-08-30",
+    "progress": 70,
+    "plannedProgress": 68,
+    "description": "750-bed multi-specialty regional healthcare facility and oncology center.",
+    "milestones": [
+      {
+        "id": "m2-1",
+        "name": "Site Foundation & Piling",
+        "plannedDate": "2024-04-15",
+        "actualDate": "2024-04-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "NBCC"
+      },
+      {
+        "id": "m2-2",
+        "name": "Structural Superstructure",
+        "plannedDate": "2024-09-30",
+        "actualDate": "2024-09-25",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "NBCC"
+      },
+      {
+        "id": "m2-3",
+        "name": "MEP & Medical Gas Pipeline",
+        "plannedDate": "2025-01-15",
+        "status": "In Progress",
+        "delayDays": 0,
+        "owner": "Voltas"
+      },
+      {
+        "id": "m2-4",
+        "name": "Interior Fitout & Modular OTs",
+        "plannedDate": "2025-05-30",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "NBCC"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-2-1",
+        "name": "Civil Shell Handover",
+        "owner": "NBCC",
+        "status": "Completed",
+        "delayDays": 0,
+        "dependsOn": []
+      },
+      {
+        "id": "act-2-2",
+        "name": "HVAC & Cleanroom Ducting",
+        "owner": "Voltas",
+        "status": "In Progress",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-2-1"
+        ]
+      },
+      {
+        "id": "act-2-3",
+        "name": "Medical Gas Pipelines",
+        "owner": "Linde India",
+        "status": "In Progress",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-2-1"
+        ]
+      },
+      {
+        "id": "act-2-4",
+        "name": "Radiology Equipment Commissioning",
+        "owner": "Siemens Health",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-2-2",
+          "act-2-3"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r2-1",
+        "title": "Medical equipment delivery timeline",
+        "severity": "Low",
+        "probability": "Low",
+        "impact": "Medium",
+        "owner": "Procurement Cell",
+        "status": "Open",
+        "recommendedAction": "Lock in shipping dates with OEM suppliers"
+      }
+    ],
+    "departments": [
+      "NBCC",
+      "Voltas",
+      "Health Dept",
+      "Linde India",
+      "Siemens Health"
+    ]
+  },
+  {
+    "id": "proj-003",
+    "code": "PP-003",
+    "name": "Urban Water Network Upgrade",
+    "sector": "Water",
+    "location": "Jaipur",
+    "manager": "Vikram Shekhawat",
+    "budget": 480,
+    "spent": 310,
+    "startDate": "2023-11-01",
+    "plannedEndDate": "2025-05-31",
+    "expectedEndDate": "2025-07-15",
+    "progress": 58,
+    "plannedProgress": 69,
+    "description": "Smart metering, DMA zoning, and 24x7 pressurized drinking water pipeline renewal.",
+    "milestones": [
+      {
+        "id": "m3-1",
+        "name": "DMA Boundary Isolation",
+        "plannedDate": "2024-03-01",
+        "actualDate": "2024-03-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "PHED"
+      },
+      {
+        "id": "m3-2",
+        "name": "SCADA Flow Meter Installation",
+        "plannedDate": "2024-07-15",
+        "status": "Delayed",
+        "delayDays": 16,
+        "owner": "ABB India"
+      },
+      {
+        "id": "m3-3",
+        "name": "Trunk Main Replacement",
+        "plannedDate": "2024-12-01",
+        "status": "In Progress",
+        "delayDays": 8,
+        "owner": "JMC Infra"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-3-1",
+        "name": "Pipeline Trenching Approval",
+        "owner": "Traffic Police",
+        "status": "Delayed",
+        "delayDays": 16,
+        "dependsOn": []
+      },
+      {
+        "id": "act-3-2",
+        "name": "HDPE Pipe Laying",
+        "owner": "PHED",
+        "status": "In Progress",
+        "delayDays": 8,
+        "dependsOn": [
+          "act-3-1"
+        ]
+      },
+      {
+        "id": "act-3-3",
+        "name": "Smart Flow Sensors Integration",
+        "owner": "ABB India",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-3-2"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r3-1",
+        "title": "Traffic diversion clearance in Walled City",
+        "severity": "High",
+        "probability": "High",
+        "impact": "High",
+        "owner": "Traffic Police",
+        "status": "Open",
+        "recommendedAction": "Permit night-shift micro-tunnelling"
+      }
+    ],
+    "departments": [
+      "PHED",
+      "ABB India",
+      "JMC Infra",
+      "Traffic Police"
+    ]
+  },
+  {
+    "id": "proj-004",
+    "code": "PP-004",
+    "name": "North Metro Extension",
+    "sector": "Metro",
+    "location": "Delhi",
+    "manager": "Rajesh Mehra",
+    "budget": 2450,
+    "spent": 1980,
+    "startDate": "2023-08-01",
+    "plannedEndDate": "2025-06-30",
+    "expectedEndDate": "2025-10-31",
+    "progress": 62,
+    "plannedProgress": 81,
+    "description": "Critical infrastructure asset in Delhi for Metro sector operations.",
+    "milestones": [
+      {
+        "id": "m4-1",
+        "name": "Phase 1 Foundation Handover",
+        "plannedDate": "2024-04-15",
+        "actualDate": "2024-04-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "Municipal Corporation"
+      },
+      {
+        "id": "m4-2",
+        "name": "Core Installation & Structural Works",
+        "plannedDate": "2024-09-30",
+        "status": "Delayed",
+        "delayDays": 22,
+        "owner": "Municipal Corporation"
+      },
+      {
+        "id": "m4-3",
+        "name": "Integrated Testing & Trial Operations",
+        "plannedDate": "2025-04-15",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "Rajesh Mehra"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-4-1",
+        "name": "Statutory Clearance & Handover",
+        "owner": "Municipal Corporation",
+        "status": "Delayed",
+        "delayDays": 22,
+        "dependsOn": []
+      },
+      {
+        "id": "act-4-2",
+        "name": "Core Construction Activity",
+        "owner": "Primary EPC",
+        "status": "In Progress",
+        "delayDays": 11,
+        "dependsOn": [
+          "act-4-1"
+        ]
+      },
+      {
+        "id": "act-4-3",
+        "name": "Integration & Commissioning",
+        "owner": "System Integrator",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-4-2"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r4-1",
+        "title": "Land approval pending with Municipal Corporation",
+        "severity": "Critical",
+        "probability": "High",
+        "impact": "High",
+        "owner": "Municipal Corporation",
+        "status": "Open",
+        "recommendedAction": "Escalate to department head immediately"
+      }
+    ],
+    "departments": [
+      "Municipal Corporation",
+      "Primary EPC",
+      "System Integrator"
+    ]
+  },
+  {
+    "id": "proj-005",
+    "code": "PP-005",
+    "name": "Riverfront Rail Corridor",
+    "sector": "Railways",
+    "location": "Guwahati",
+    "manager": "Bipul Sarma",
+    "budget": 890,
+    "spent": 540,
+    "startDate": "2023-08-01",
+    "plannedEndDate": "2025-06-30",
+    "expectedEndDate": "2025-10-31",
+    "progress": 51,
+    "plannedProgress": 72,
+    "description": "Critical infrastructure asset in Guwahati for Railways sector operations.",
+    "milestones": [
+      {
+        "id": "m5-1",
+        "name": "Phase 1 Foundation Handover",
+        "plannedDate": "2024-04-15",
+        "actualDate": "2024-04-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "Public Works Department"
+      },
+      {
+        "id": "m5-2",
+        "name": "Core Installation & Structural Works",
+        "plannedDate": "2024-09-30",
+        "status": "Delayed",
+        "delayDays": 25,
+        "owner": "Public Works Department"
+      },
+      {
+        "id": "m5-3",
+        "name": "Integrated Testing & Trial Operations",
+        "plannedDate": "2025-04-15",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "Bipul Sarma"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-5-1",
+        "name": "Statutory Clearance & Handover",
+        "owner": "Public Works Department",
+        "status": "Delayed",
+        "delayDays": 25,
+        "dependsOn": []
+      },
+      {
+        "id": "act-5-2",
+        "name": "Core Construction Activity",
+        "owner": "Primary EPC",
+        "status": "In Progress",
+        "delayDays": 12,
+        "dependsOn": [
+          "act-5-1"
+        ]
+      },
+      {
+        "id": "act-5-3",
+        "name": "Integration & Commissioning",
+        "owner": "System Integrator",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-5-2"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r5-1",
+        "title": "Land approval pending with Public Works Department",
+        "severity": "Critical",
+        "probability": "High",
+        "impact": "High",
+        "owner": "Public Works Department",
+        "status": "Open",
+        "recommendedAction": "Escalate to department head immediately"
+      }
+    ],
+    "departments": [
+      "Public Works Department",
+      "Primary EPC",
+      "System Integrator"
+    ]
+  },
+  {
+    "id": "proj-006",
+    "code": "PP-006",
+    "name": "Solar Grid Interconnect Phase II",
+    "sector": "Energy",
+    "location": "Ahmedabad",
+    "manager": "Kiran Patel",
+    "budget": 720,
+    "spent": 610,
+    "startDate": "2023-08-01",
+    "plannedEndDate": "2025-06-30",
+    "expectedEndDate": "2025-08-15",
+    "progress": 82,
+    "plannedProgress": 88,
+    "description": "Critical infrastructure asset in Ahmedabad for Energy sector operations.",
+    "milestones": [
+      {
+        "id": "m6-1",
+        "name": "Phase 1 Foundation Handover",
+        "plannedDate": "2024-04-15",
+        "actualDate": "2024-04-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "Revenue Dept"
+      },
+      {
+        "id": "m6-2",
+        "name": "Core Installation & Structural Works",
+        "plannedDate": "2024-09-30",
+        "status": "In Progress",
+        "delayDays": 5,
+        "owner": "Revenue Dept"
+      },
+      {
+        "id": "m6-3",
+        "name": "Integrated Testing & Trial Operations",
+        "plannedDate": "2025-04-15",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "Kiran Patel"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-6-1",
+        "name": "Statutory Clearance & Handover",
+        "owner": "Revenue Dept",
+        "status": "In Progress",
+        "delayDays": 5,
+        "dependsOn": []
+      },
+      {
+        "id": "act-6-2",
+        "name": "Core Construction Activity",
+        "owner": "Primary EPC",
+        "status": "In Progress",
+        "delayDays": 2,
+        "dependsOn": [
+          "act-6-1"
+        ]
+      },
+      {
+        "id": "act-6-3",
+        "name": "Integration & Commissioning",
+        "owner": "System Integrator",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-6-2"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r6-1",
+        "title": "Supply chain delivery risk with Revenue Dept",
+        "severity": "Medium",
+        "probability": "Medium",
+        "impact": "Medium",
+        "owner": "Revenue Dept",
+        "status": "Open",
+        "recommendedAction": "Monitor vendor SLAs closely"
+      }
+    ],
+    "departments": [
+      "Revenue Dept",
+      "Primary EPC",
+      "System Integrator"
+    ]
+  },
+  {
+    "id": "proj-007",
+    "code": "PP-007",
+    "name": "Smart Classroom Rollout",
+    "sector": "Education",
+    "location": "Lucknow",
+    "manager": "Pooja Tiwari",
+    "budget": 210,
+    "spent": 190,
+    "startDate": "2023-08-01",
+    "plannedEndDate": "2025-06-30",
+    "expectedEndDate": "2025-08-15",
+    "progress": 78,
+    "plannedProgress": 84,
+    "description": "Critical infrastructure asset in Lucknow for Education sector operations.",
+    "milestones": [
+      {
+        "id": "m7-1",
+        "name": "Phase 1 Foundation Handover",
+        "plannedDate": "2024-04-15",
+        "actualDate": "2024-04-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "Madhyamik Shiksha"
+      },
+      {
+        "id": "m7-2",
+        "name": "Core Installation & Structural Works",
+        "plannedDate": "2024-09-30",
+        "status": "In Progress",
+        "delayDays": 6,
+        "owner": "Madhyamik Shiksha"
+      },
+      {
+        "id": "m7-3",
+        "name": "Integrated Testing & Trial Operations",
+        "plannedDate": "2025-04-15",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "Pooja Tiwari"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-7-1",
+        "name": "Statutory Clearance & Handover",
+        "owner": "Madhyamik Shiksha",
+        "status": "In Progress",
+        "delayDays": 6,
+        "dependsOn": []
+      },
+      {
+        "id": "act-7-2",
+        "name": "Core Construction Activity",
+        "owner": "Primary EPC",
+        "status": "In Progress",
+        "delayDays": 3,
+        "dependsOn": [
+          "act-7-1"
+        ]
+      },
+      {
+        "id": "act-7-3",
+        "name": "Integration & Commissioning",
+        "owner": "System Integrator",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-7-2"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r7-1",
+        "title": "Supply chain delivery risk with Madhyamik Shiksha",
+        "severity": "Medium",
+        "probability": "Medium",
+        "impact": "Medium",
+        "owner": "Madhyamik Shiksha",
+        "status": "Open",
+        "recommendedAction": "Monitor vendor SLAs closely"
+      }
+    ],
+    "departments": [
+      "Madhyamik Shiksha",
+      "Primary EPC",
+      "System Integrator"
+    ]
+  },
+  {
+    "id": "proj-008",
+    "code": "PP-008",
+    "name": "Integrated Township Development",
+    "sector": "Urban Development",
+    "location": "Pune",
+    "manager": "Sameer Joshi",
+    "budget": 1650,
+    "spent": 1100,
+    "startDate": "2023-08-01",
+    "plannedEndDate": "2025-06-30",
+    "expectedEndDate": "2025-10-31",
+    "progress": 49,
+    "plannedProgress": 68,
+    "description": "Critical infrastructure asset in Pune for Urban Development sector operations.",
+    "milestones": [
+      {
+        "id": "m8-1",
+        "name": "Phase 1 Foundation Handover",
+        "plannedDate": "2024-04-15",
+        "actualDate": "2024-04-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "Water Resources Dept"
+      },
+      {
+        "id": "m8-2",
+        "name": "Core Installation & Structural Works",
+        "plannedDate": "2024-09-30",
+        "status": "Delayed",
+        "delayDays": 20,
+        "owner": "Water Resources Dept"
+      },
+      {
+        "id": "m8-3",
+        "name": "Integrated Testing & Trial Operations",
+        "plannedDate": "2025-04-15",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "Sameer Joshi"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-8-1",
+        "name": "Statutory Clearance & Handover",
+        "owner": "Water Resources Dept",
+        "status": "Delayed",
+        "delayDays": 20,
+        "dependsOn": []
+      },
+      {
+        "id": "act-8-2",
+        "name": "Core Construction Activity",
+        "owner": "Primary EPC",
+        "status": "In Progress",
+        "delayDays": 10,
+        "dependsOn": [
+          "act-8-1"
+        ]
+      },
+      {
+        "id": "act-8-3",
+        "name": "Integration & Commissioning",
+        "owner": "System Integrator",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-8-2"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r8-1",
+        "title": "Land approval pending with Water Resources Dept",
+        "severity": "Critical",
+        "probability": "High",
+        "impact": "High",
+        "owner": "Water Resources Dept",
+        "status": "Open",
+        "recommendedAction": "Escalate to department head immediately"
+      }
+    ],
+    "departments": [
+      "Water Resources Dept",
+      "Primary EPC",
+      "System Integrator"
+    ]
+  },
+  {
+    "id": "proj-009",
+    "code": "PP-009",
+    "name": "Precision Components Plant",
+    "sector": "Manufacturing",
+    "location": "Chennai",
+    "manager": "K. Srinivasan",
+    "budget": 540,
+    "spent": 490,
+    "startDate": "2023-08-01",
+    "plannedEndDate": "2025-06-30",
+    "expectedEndDate": "2025-08-15",
+    "progress": 88,
+    "plannedProgress": 94,
+    "description": "Critical infrastructure asset in Chennai for Manufacturing sector operations.",
+    "milestones": [
+      {
+        "id": "m9-1",
+        "name": "Phase 1 Foundation Handover",
+        "plannedDate": "2024-04-15",
+        "actualDate": "2024-04-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "Customs & Port"
+      },
+      {
+        "id": "m9-2",
+        "name": "Core Installation & Structural Works",
+        "plannedDate": "2024-09-30",
+        "status": "In Progress",
+        "delayDays": 5,
+        "owner": "Customs & Port"
+      },
+      {
+        "id": "m9-3",
+        "name": "Integrated Testing & Trial Operations",
+        "plannedDate": "2025-04-15",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "K. Srinivasan"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-9-1",
+        "name": "Statutory Clearance & Handover",
+        "owner": "Customs & Port",
+        "status": "In Progress",
+        "delayDays": 5,
+        "dependsOn": []
+      },
+      {
+        "id": "act-9-2",
+        "name": "Core Construction Activity",
+        "owner": "Primary EPC",
+        "status": "In Progress",
+        "delayDays": 2,
+        "dependsOn": [
+          "act-9-1"
+        ]
+      },
+      {
+        "id": "act-9-3",
+        "name": "Integration & Commissioning",
+        "owner": "System Integrator",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-9-2"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r9-1",
+        "title": "Supply chain delivery risk with Customs & Port",
+        "severity": "Medium",
+        "probability": "Medium",
+        "impact": "Medium",
+        "owner": "Customs & Port",
+        "status": "Open",
+        "recommendedAction": "Monitor vendor SLAs closely"
+      }
+    ],
+    "departments": [
+      "Customs & Port",
+      "Primary EPC",
+      "System Integrator"
+    ]
+  },
+  {
+    "id": "proj-010",
+    "code": "PP-010",
+    "name": "State Data Centre Modernization",
+    "sector": "IT",
+    "location": "Bengaluru",
+    "manager": "Deepa Hegde",
+    "budget": 340,
+    "spent": 290,
+    "startDate": "2023-08-01",
+    "plannedEndDate": "2025-06-30",
+    "expectedEndDate": "2025-06-30",
+    "progress": 92,
+    "plannedProgress": 90,
+    "description": "Critical infrastructure asset in Bengaluru for IT sector operations.",
+    "milestones": [
+      {
+        "id": "m10-1",
+        "name": "Phase 1 Foundation Handover",
+        "plannedDate": "2024-04-15",
+        "actualDate": "2024-04-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "STQC"
+      },
+      {
+        "id": "m10-2",
+        "name": "Core Installation & Structural Works",
+        "plannedDate": "2024-09-30",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "STQC"
+      },
+      {
+        "id": "m10-3",
+        "name": "Integrated Testing & Trial Operations",
+        "plannedDate": "2025-04-15",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "Deepa Hegde"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-10-1",
+        "name": "Statutory Clearance & Handover",
+        "owner": "STQC",
+        "status": "Completed",
+        "delayDays": 0,
+        "dependsOn": []
+      },
+      {
+        "id": "act-10-2",
+        "name": "Core Construction Activity",
+        "owner": "Primary EPC",
+        "status": "Completed",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-10-1"
+        ]
+      },
+      {
+        "id": "act-10-3",
+        "name": "Integration & Commissioning",
+        "owner": "System Integrator",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-10-2"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r10-1",
+        "title": "Supply chain delivery risk with STQC",
+        "severity": "Low",
+        "probability": "Medium",
+        "impact": "Medium",
+        "owner": "STQC",
+        "status": "Open",
+        "recommendedAction": "Monitor vendor SLAs closely"
+      }
+    ],
+    "departments": [
+      "STQC",
+      "Primary EPC",
+      "System Integrator"
+    ]
+  },
+  {
+    "id": "proj-011",
+    "code": "PP-011",
+    "name": "Coastal Flood Barrier Project",
+    "sector": "Water",
+    "location": "Chennai",
+    "manager": "M. Balakrishnan",
+    "budget": 520,
+    "spent": 390,
+    "startDate": "2023-08-01",
+    "plannedEndDate": "2025-06-30",
+    "expectedEndDate": "2025-10-31",
+    "progress": 52,
+    "plannedProgress": 75,
+    "description": "Critical infrastructure asset in Chennai for Water sector operations.",
+    "milestones": [
+      {
+        "id": "m11-1",
+        "name": "Phase 1 Foundation Handover",
+        "plannedDate": "2024-04-15",
+        "actualDate": "2024-04-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "Environment & Forest Dept"
+      },
+      {
+        "id": "m11-2",
+        "name": "Core Installation & Structural Works",
+        "plannedDate": "2024-09-30",
+        "status": "Delayed",
+        "delayDays": 24,
+        "owner": "Environment & Forest Dept"
+      },
+      {
+        "id": "m11-3",
+        "name": "Integrated Testing & Trial Operations",
+        "plannedDate": "2025-04-15",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "M. Balakrishnan"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-11-1",
+        "name": "Statutory Clearance & Handover",
+        "owner": "Environment & Forest Dept",
+        "status": "Delayed",
+        "delayDays": 24,
+        "dependsOn": []
+      },
+      {
+        "id": "act-11-2",
+        "name": "Core Construction Activity",
+        "owner": "Primary EPC",
+        "status": "In Progress",
+        "delayDays": 12,
+        "dependsOn": [
+          "act-11-1"
+        ]
+      },
+      {
+        "id": "act-11-3",
+        "name": "Integration & Commissioning",
+        "owner": "System Integrator",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-11-2"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r11-1",
+        "title": "Land approval pending with Environment & Forest Dept",
+        "severity": "Critical",
+        "probability": "High",
+        "impact": "High",
+        "owner": "Environment & Forest Dept",
+        "status": "Open",
+        "recommendedAction": "Escalate to department head immediately"
+      }
+    ],
+    "departments": [
+      "Environment & Forest Dept",
+      "Primary EPC",
+      "System Integrator"
+    ]
+  },
+  {
+    "id": "proj-012",
+    "code": "PP-012",
+    "name": "Suburban Rail Signalling Upgrade",
+    "sector": "Railways",
+    "location": "Mumbai",
+    "manager": "Devendra Patil",
+    "budget": 680,
+    "spent": 510,
+    "startDate": "2023-08-01",
+    "plannedEndDate": "2025-06-30",
+    "expectedEndDate": "2025-10-31",
+    "progress": 55,
+    "plannedProgress": 76,
+    "description": "Critical infrastructure asset in Mumbai for Railways sector operations.",
+    "milestones": [
+      {
+        "id": "m12-1",
+        "name": "Phase 1 Foundation Handover",
+        "plannedDate": "2024-04-15",
+        "actualDate": "2024-04-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "Electricity Board"
+      },
+      {
+        "id": "m12-2",
+        "name": "Core Installation & Structural Works",
+        "plannedDate": "2024-09-30",
+        "status": "Delayed",
+        "delayDays": 21,
+        "owner": "Electricity Board"
+      },
+      {
+        "id": "m12-3",
+        "name": "Integrated Testing & Trial Operations",
+        "plannedDate": "2025-04-15",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "Devendra Patil"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-12-1",
+        "name": "Statutory Clearance & Handover",
+        "owner": "Electricity Board",
+        "status": "Delayed",
+        "delayDays": 21,
+        "dependsOn": []
+      },
+      {
+        "id": "act-12-2",
+        "name": "Core Construction Activity",
+        "owner": "Primary EPC",
+        "status": "In Progress",
+        "delayDays": 10,
+        "dependsOn": [
+          "act-12-1"
+        ]
+      },
+      {
+        "id": "act-12-3",
+        "name": "Integration & Commissioning",
+        "owner": "System Integrator",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-12-2"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r12-1",
+        "title": "Land approval pending with Electricity Board",
+        "severity": "Critical",
+        "probability": "High",
+        "impact": "High",
+        "owner": "Electricity Board",
+        "status": "Open",
+        "recommendedAction": "Escalate to department head immediately"
+      }
+    ],
+    "departments": [
+      "Electricity Board",
+      "Primary EPC",
+      "System Integrator"
+    ]
+  },
+  {
+    "id": "proj-013",
+    "code": "PP-013",
+    "name": "District Hospital Trauma Wing",
+    "sector": "Healthcare",
+    "location": "Lucknow",
+    "manager": "Dr. R. K. Shukla",
+    "budget": 310,
+    "spent": 240,
+    "startDate": "2023-08-01",
+    "plannedEndDate": "2025-06-30",
+    "expectedEndDate": "2025-08-15",
+    "progress": 68,
+    "plannedProgress": 72,
+    "description": "Critical infrastructure asset in Lucknow for Healthcare sector operations.",
+    "milestones": [
+      {
+        "id": "m13-1",
+        "name": "Phase 1 Foundation Handover",
+        "plannedDate": "2024-04-15",
+        "actualDate": "2024-04-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "Fire Dept"
+      },
+      {
+        "id": "m13-2",
+        "name": "Core Installation & Structural Works",
+        "plannedDate": "2024-09-30",
+        "status": "In Progress",
+        "delayDays": 5,
+        "owner": "Fire Dept"
+      },
+      {
+        "id": "m13-3",
+        "name": "Integrated Testing & Trial Operations",
+        "plannedDate": "2025-04-15",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "Dr. R. K. Shukla"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-13-1",
+        "name": "Statutory Clearance & Handover",
+        "owner": "Fire Dept",
+        "status": "In Progress",
+        "delayDays": 5,
+        "dependsOn": []
+      },
+      {
+        "id": "act-13-2",
+        "name": "Core Construction Activity",
+        "owner": "Primary EPC",
+        "status": "In Progress",
+        "delayDays": 2,
+        "dependsOn": [
+          "act-13-1"
+        ]
+      },
+      {
+        "id": "act-13-3",
+        "name": "Integration & Commissioning",
+        "owner": "System Integrator",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-13-2"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r13-1",
+        "title": "Supply chain delivery risk with Fire Dept",
+        "severity": "Medium",
+        "probability": "Medium",
+        "impact": "Medium",
+        "owner": "Fire Dept",
+        "status": "Open",
+        "recommendedAction": "Monitor vendor SLAs closely"
+      }
+    ],
+    "departments": [
+      "Fire Dept",
+      "Primary EPC",
+      "System Integrator"
+    ]
+  },
+  {
+    "id": "proj-014",
+    "code": "PP-014",
+    "name": "Ring Road Widening Package 3",
+    "sector": "Roads",
+    "location": "Hyderabad",
+    "manager": "G. Venkat Rao",
+    "budget": 780,
+    "spent": 620,
+    "startDate": "2023-08-01",
+    "plannedEndDate": "2025-06-30",
+    "expectedEndDate": "2025-08-15",
+    "progress": 74,
+    "plannedProgress": 82,
+    "description": "Critical infrastructure asset in Hyderabad for Roads sector operations.",
+    "milestones": [
+      {
+        "id": "m14-1",
+        "name": "Phase 1 Foundation Handover",
+        "plannedDate": "2024-04-15",
+        "actualDate": "2024-04-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "Forest Dept"
+      },
+      {
+        "id": "m14-2",
+        "name": "Core Installation & Structural Works",
+        "plannedDate": "2024-09-30",
+        "status": "In Progress",
+        "delayDays": 8,
+        "owner": "Forest Dept"
+      },
+      {
+        "id": "m14-3",
+        "name": "Integrated Testing & Trial Operations",
+        "plannedDate": "2025-04-15",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "G. Venkat Rao"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-14-1",
+        "name": "Statutory Clearance & Handover",
+        "owner": "Forest Dept",
+        "status": "In Progress",
+        "delayDays": 8,
+        "dependsOn": []
+      },
+      {
+        "id": "act-14-2",
+        "name": "Core Construction Activity",
+        "owner": "Primary EPC",
+        "status": "In Progress",
+        "delayDays": 4,
+        "dependsOn": [
+          "act-14-1"
+        ]
+      },
+      {
+        "id": "act-14-3",
+        "name": "Integration & Commissioning",
+        "owner": "System Integrator",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-14-2"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r14-1",
+        "title": "Supply chain delivery risk with Forest Dept",
+        "severity": "Medium",
+        "probability": "Medium",
+        "impact": "Medium",
+        "owner": "Forest Dept",
+        "status": "Open",
+        "recommendedAction": "Monitor vendor SLAs closely"
+      }
+    ],
+    "departments": [
+      "Forest Dept",
+      "Primary EPC",
+      "System Integrator"
+    ]
+  },
+  {
+    "id": "proj-015",
+    "code": "PP-015",
+    "name": "Metro Depot & Yard Construction",
+    "sector": "Metro",
+    "location": "Bengaluru",
+    "manager": "K. Narayanaswamy",
+    "budget": 920,
+    "spent": 740,
+    "startDate": "2023-08-01",
+    "plannedEndDate": "2025-06-30",
+    "expectedEndDate": "2025-08-15",
+    "progress": 79,
+    "plannedProgress": 83,
+    "description": "Critical infrastructure asset in Bengaluru for Metro sector operations.",
+    "milestones": [
+      {
+        "id": "m15-1",
+        "name": "Phase 1 Foundation Handover",
+        "plannedDate": "2024-04-15",
+        "actualDate": "2024-04-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "BESCOM"
+      },
+      {
+        "id": "m15-2",
+        "name": "Core Installation & Structural Works",
+        "plannedDate": "2024-09-30",
+        "status": "In Progress",
+        "delayDays": 6,
+        "owner": "BESCOM"
+      },
+      {
+        "id": "m15-3",
+        "name": "Integrated Testing & Trial Operations",
+        "plannedDate": "2025-04-15",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "K. Narayanaswamy"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-15-1",
+        "name": "Statutory Clearance & Handover",
+        "owner": "BESCOM",
+        "status": "In Progress",
+        "delayDays": 6,
+        "dependsOn": []
+      },
+      {
+        "id": "act-15-2",
+        "name": "Core Construction Activity",
+        "owner": "Primary EPC",
+        "status": "In Progress",
+        "delayDays": 3,
+        "dependsOn": [
+          "act-15-1"
+        ]
+      },
+      {
+        "id": "act-15-3",
+        "name": "Integration & Commissioning",
+        "owner": "System Integrator",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-15-2"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r15-1",
+        "title": "Supply chain delivery risk with BESCOM",
+        "severity": "Medium",
+        "probability": "Medium",
+        "impact": "Medium",
+        "owner": "BESCOM",
+        "status": "Open",
+        "recommendedAction": "Monitor vendor SLAs closely"
+      }
+    ],
+    "departments": [
+      "BESCOM",
+      "Primary EPC",
+      "System Integrator"
+    ]
+  },
+  {
+    "id": "proj-016",
+    "code": "PP-016",
+    "name": "Rural Electrification Cluster 12",
+    "sector": "Energy",
+    "location": "Guwahati",
+    "manager": "Tapan Das",
+    "budget": 380,
+    "spent": 310,
+    "startDate": "2023-08-01",
+    "plannedEndDate": "2025-06-30",
+    "expectedEndDate": "2025-10-31",
+    "progress": 54,
+    "plannedProgress": 79,
+    "description": "Critical infrastructure asset in Guwahati for Energy sector operations.",
+    "milestones": [
+      {
+        "id": "m16-1",
+        "name": "Phase 1 Foundation Handover",
+        "plannedDate": "2024-04-15",
+        "actualDate": "2024-04-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "Finance Department"
+      },
+      {
+        "id": "m16-2",
+        "name": "Core Installation & Structural Works",
+        "plannedDate": "2024-09-30",
+        "status": "Delayed",
+        "delayDays": 26,
+        "owner": "Finance Department"
+      },
+      {
+        "id": "m16-3",
+        "name": "Integrated Testing & Trial Operations",
+        "plannedDate": "2025-04-15",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "Tapan Das"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-16-1",
+        "name": "Statutory Clearance & Handover",
+        "owner": "Finance Department",
+        "status": "Delayed",
+        "delayDays": 26,
+        "dependsOn": []
+      },
+      {
+        "id": "act-16-2",
+        "name": "Core Construction Activity",
+        "owner": "Primary EPC",
+        "status": "In Progress",
+        "delayDays": 13,
+        "dependsOn": [
+          "act-16-1"
+        ]
+      },
+      {
+        "id": "act-16-3",
+        "name": "Integration & Commissioning",
+        "owner": "System Integrator",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-16-2"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r16-1",
+        "title": "Land approval pending with Finance Department",
+        "severity": "Critical",
+        "probability": "High",
+        "impact": "High",
+        "owner": "Finance Department",
+        "status": "Open",
+        "recommendedAction": "Escalate to department head immediately"
+      }
+    ],
+    "departments": [
+      "Finance Department",
+      "Primary EPC",
+      "System Integrator"
+    ]
+  },
+  {
+    "id": "proj-017",
+    "code": "PP-017",
+    "name": "Vocational Training Centre",
+    "sector": "Education",
+    "location": "Bhubaneswar",
+    "manager": "Siddharth Mohapatra",
+    "budget": 180,
+    "spent": 120,
+    "startDate": "2023-08-01",
+    "plannedEndDate": "2025-06-30",
+    "expectedEndDate": "2025-06-30",
+    "progress": 81,
+    "plannedProgress": 78,
+    "description": "Critical infrastructure asset in Bhubaneswar for Education sector operations.",
+    "milestones": [
+      {
+        "id": "m17-1",
+        "name": "Phase 1 Foundation Handover",
+        "plannedDate": "2024-04-15",
+        "actualDate": "2024-04-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "IDCO"
+      },
+      {
+        "id": "m17-2",
+        "name": "Core Installation & Structural Works",
+        "plannedDate": "2024-09-30",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "IDCO"
+      },
+      {
+        "id": "m17-3",
+        "name": "Integrated Testing & Trial Operations",
+        "plannedDate": "2025-04-15",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "Siddharth Mohapatra"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-17-1",
+        "name": "Statutory Clearance & Handover",
+        "owner": "IDCO",
+        "status": "Completed",
+        "delayDays": 0,
+        "dependsOn": []
+      },
+      {
+        "id": "act-17-2",
+        "name": "Core Construction Activity",
+        "owner": "Primary EPC",
+        "status": "Completed",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-17-1"
+        ]
+      },
+      {
+        "id": "act-17-3",
+        "name": "Integration & Commissioning",
+        "owner": "System Integrator",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-17-2"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r17-1",
+        "title": "Supply chain delivery risk with IDCO",
+        "severity": "Low",
+        "probability": "Medium",
+        "impact": "Medium",
+        "owner": "IDCO",
+        "status": "Open",
+        "recommendedAction": "Monitor vendor SLAs closely"
+      }
+    ],
+    "departments": [
+      "IDCO",
+      "Primary EPC",
+      "System Integrator"
+    ]
+  },
+  {
+    "id": "proj-018",
+    "code": "PP-018",
+    "name": "Pharma SEZ Industrial Park",
+    "sector": "Manufacturing",
+    "location": "Hyderabad",
+    "manager": "P. Ravichandran",
+    "budget": 950,
+    "spent": 680,
+    "startDate": "2023-08-01",
+    "plannedEndDate": "2025-06-30",
+    "expectedEndDate": "2025-10-31",
+    "progress": 57,
+    "plannedProgress": 74,
+    "description": "Critical infrastructure asset in Hyderabad for Manufacturing sector operations.",
+    "milestones": [
+      {
+        "id": "m18-1",
+        "name": "Phase 1 Foundation Handover",
+        "plannedDate": "2024-04-15",
+        "actualDate": "2024-04-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "Pollution Control Board"
+      },
+      {
+        "id": "m18-2",
+        "name": "Core Installation & Structural Works",
+        "plannedDate": "2024-09-30",
+        "status": "Delayed",
+        "delayDays": 18,
+        "owner": "Pollution Control Board"
+      },
+      {
+        "id": "m18-3",
+        "name": "Integrated Testing & Trial Operations",
+        "plannedDate": "2025-04-15",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "P. Ravichandran"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-18-1",
+        "name": "Statutory Clearance & Handover",
+        "owner": "Pollution Control Board",
+        "status": "Delayed",
+        "delayDays": 18,
+        "dependsOn": []
+      },
+      {
+        "id": "act-18-2",
+        "name": "Core Construction Activity",
+        "owner": "Primary EPC",
+        "status": "In Progress",
+        "delayDays": 9,
+        "dependsOn": [
+          "act-18-1"
+        ]
+      },
+      {
+        "id": "act-18-3",
+        "name": "Integration & Commissioning",
+        "owner": "System Integrator",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-18-2"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r18-1",
+        "title": "Land approval pending with Pollution Control Board",
+        "severity": "Critical",
+        "probability": "High",
+        "impact": "High",
+        "owner": "Pollution Control Board",
+        "status": "Open",
+        "recommendedAction": "Escalate to department head immediately"
+      }
+    ],
+    "departments": [
+      "Pollution Control Board",
+      "Primary EPC",
+      "System Integrator"
+    ]
+  },
+  {
+    "id": "proj-019",
+    "code": "PP-019",
+    "name": "Civic Smart Governance Portal",
+    "sector": "IT",
+    "location": "Ahmedabad",
+    "manager": "Alok Trivedi",
+    "budget": 160,
+    "spent": 130,
+    "startDate": "2023-08-01",
+    "plannedEndDate": "2025-06-30",
+    "expectedEndDate": "2025-10-31",
+    "progress": 60,
+    "plannedProgress": 85,
+    "description": "Critical infrastructure asset in Ahmedabad for IT sector operations.",
+    "milestones": [
+      {
+        "id": "m19-1",
+        "name": "Phase 1 Foundation Handover",
+        "plannedDate": "2024-04-15",
+        "actualDate": "2024-04-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "Revenue Department"
+      },
+      {
+        "id": "m19-2",
+        "name": "Core Installation & Structural Works",
+        "plannedDate": "2024-09-30",
+        "status": "Delayed",
+        "delayDays": 22,
+        "owner": "Revenue Department"
+      },
+      {
+        "id": "m19-3",
+        "name": "Integrated Testing & Trial Operations",
+        "plannedDate": "2025-04-15",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "Alok Trivedi"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-19-1",
+        "name": "Statutory Clearance & Handover",
+        "owner": "Revenue Department",
+        "status": "Delayed",
+        "delayDays": 22,
+        "dependsOn": []
+      },
+      {
+        "id": "act-19-2",
+        "name": "Core Construction Activity",
+        "owner": "Primary EPC",
+        "status": "In Progress",
+        "delayDays": 11,
+        "dependsOn": [
+          "act-19-1"
+        ]
+      },
+      {
+        "id": "act-19-3",
+        "name": "Integration & Commissioning",
+        "owner": "System Integrator",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-19-2"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r19-1",
+        "title": "Land approval pending with Revenue Department",
+        "severity": "Critical",
+        "probability": "High",
+        "impact": "High",
+        "owner": "Revenue Department",
+        "status": "Open",
+        "recommendedAction": "Escalate to department head immediately"
+      }
+    ],
+    "departments": [
+      "Revenue Department",
+      "Primary EPC",
+      "System Integrator"
+    ]
+  },
+  {
+    "id": "proj-020",
+    "code": "PP-020",
+    "name": "Airport Metro Link Feasibility-to-Build",
+    "sector": "Metro",
+    "location": "Kolkata",
+    "manager": "Subhashish Ghosh",
+    "budget": 2150,
+    "spent": 1620,
+    "startDate": "2023-08-01",
+    "plannedEndDate": "2025-06-30",
+    "expectedEndDate": "2025-10-31",
+    "progress": 48,
+    "plannedProgress": 73,
+    "description": "Critical infrastructure asset in Kolkata for Metro sector operations.",
+    "milestones": [
+      {
+        "id": "m20-1",
+        "name": "Phase 1 Foundation Handover",
+        "plannedDate": "2024-04-15",
+        "actualDate": "2024-04-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "Electricity Board"
+      },
+      {
+        "id": "m20-2",
+        "name": "Core Installation & Structural Works",
+        "plannedDate": "2024-09-30",
+        "status": "Delayed",
+        "delayDays": 21,
+        "owner": "Electricity Board"
+      },
+      {
+        "id": "m20-3",
+        "name": "Integrated Testing & Trial Operations",
+        "plannedDate": "2025-04-15",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "Subhashish Ghosh"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-20-1",
+        "name": "Statutory Clearance & Handover",
+        "owner": "Electricity Board",
+        "status": "Delayed",
+        "delayDays": 21,
+        "dependsOn": []
+      },
+      {
+        "id": "act-20-2",
+        "name": "Core Construction Activity",
+        "owner": "Primary EPC",
+        "status": "In Progress",
+        "delayDays": 10,
+        "dependsOn": [
+          "act-20-1"
+        ]
+      },
+      {
+        "id": "act-20-3",
+        "name": "Integration & Commissioning",
+        "owner": "System Integrator",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-20-2"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r20-1",
+        "title": "Land approval pending with Electricity Board",
+        "severity": "Critical",
+        "probability": "High",
+        "impact": "High",
+        "owner": "Electricity Board",
+        "status": "Open",
+        "recommendedAction": "Escalate to department head immediately"
+      }
+    ],
+    "departments": [
+      "Electricity Board",
+      "Primary EPC",
+      "System Integrator"
+    ]
+  },
+  {
+    "id": "proj-021",
+    "code": "PP-021",
+    "name": "Community Health Centre Network",
+    "sector": "Healthcare",
+    "location": "Pune",
+    "manager": "Dr. Nitin Kadam",
+    "budget": 280,
+    "spent": 230,
+    "startDate": "2023-08-01",
+    "plannedEndDate": "2025-06-30",
+    "expectedEndDate": "2025-10-31",
+    "progress": 64,
+    "plannedProgress": 83,
+    "description": "Critical infrastructure asset in Pune for Healthcare sector operations.",
+    "milestones": [
+      {
+        "id": "m21-1",
+        "name": "Phase 1 Foundation Handover",
+        "plannedDate": "2024-04-15",
+        "actualDate": "2024-04-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "Public Works Dept"
+      },
+      {
+        "id": "m21-2",
+        "name": "Core Installation & Structural Works",
+        "plannedDate": "2024-09-30",
+        "status": "Delayed",
+        "delayDays": 17,
+        "owner": "Public Works Dept"
+      },
+      {
+        "id": "m21-3",
+        "name": "Integrated Testing & Trial Operations",
+        "plannedDate": "2025-04-15",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "Dr. Nitin Kadam"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-21-1",
+        "name": "Statutory Clearance & Handover",
+        "owner": "Public Works Dept",
+        "status": "Delayed",
+        "delayDays": 17,
+        "dependsOn": []
+      },
+      {
+        "id": "act-21-2",
+        "name": "Core Construction Activity",
+        "owner": "Primary EPC",
+        "status": "In Progress",
+        "delayDays": 8,
+        "dependsOn": [
+          "act-21-1"
+        ]
+      },
+      {
+        "id": "act-21-3",
+        "name": "Integration & Commissioning",
+        "owner": "System Integrator",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-21-2"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r21-1",
+        "title": "Land approval pending with Public Works Dept",
+        "severity": "Critical",
+        "probability": "High",
+        "impact": "High",
+        "owner": "Public Works Dept",
+        "status": "Open",
+        "recommendedAction": "Escalate to department head immediately"
+      }
+    ],
+    "departments": [
+      "Public Works Dept",
+      "Primary EPC",
+      "System Integrator"
+    ]
+  },
+  {
+    "id": "proj-022",
+    "code": "PP-022",
+    "name": "Solid Waste Processing Plant",
+    "sector": "Urban Development",
+    "location": "Delhi",
+    "manager": "Sanjay Tyagi",
+    "budget": 420,
+    "spent": 310,
+    "startDate": "2023-08-01",
+    "plannedEndDate": "2025-06-30",
+    "expectedEndDate": "2025-08-15",
+    "progress": 72,
+    "plannedProgress": 79,
+    "description": "Critical infrastructure asset in Delhi for Urban Development sector operations.",
+    "milestones": [
+      {
+        "id": "m22-1",
+        "name": "Phase 1 Foundation Handover",
+        "plannedDate": "2024-04-15",
+        "actualDate": "2024-04-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "BHEL"
+      },
+      {
+        "id": "m22-2",
+        "name": "Core Installation & Structural Works",
+        "plannedDate": "2024-09-30",
+        "status": "In Progress",
+        "delayDays": 6,
+        "owner": "BHEL"
+      },
+      {
+        "id": "m22-3",
+        "name": "Integrated Testing & Trial Operations",
+        "plannedDate": "2025-04-15",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "Sanjay Tyagi"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-22-1",
+        "name": "Statutory Clearance & Handover",
+        "owner": "BHEL",
+        "status": "In Progress",
+        "delayDays": 6,
+        "dependsOn": []
+      },
+      {
+        "id": "act-22-2",
+        "name": "Core Construction Activity",
+        "owner": "Primary EPC",
+        "status": "In Progress",
+        "delayDays": 3,
+        "dependsOn": [
+          "act-22-1"
+        ]
+      },
+      {
+        "id": "act-22-3",
+        "name": "Integration & Commissioning",
+        "owner": "System Integrator",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-22-2"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r22-1",
+        "title": "Supply chain delivery risk with BHEL",
+        "severity": "Medium",
+        "probability": "Medium",
+        "impact": "Medium",
+        "owner": "BHEL",
+        "status": "Open",
+        "recommendedAction": "Monitor vendor SLAs closely"
+      }
+    ],
+    "departments": [
+      "BHEL",
+      "Primary EPC",
+      "System Integrator"
+    ]
+  },
+  {
+    "id": "proj-023",
+    "code": "PP-023",
+    "name": "Wind Farm Grid Substation",
+    "sector": "Energy",
+    "location": "Jaipur",
+    "manager": "Rakesh Rathore",
+    "budget": 510,
+    "spent": 460,
+    "startDate": "2023-08-01",
+    "plannedEndDate": "2025-06-30",
+    "expectedEndDate": "2025-06-30",
+    "progress": 89,
+    "plannedProgress": 92,
+    "description": "Critical infrastructure asset in Jaipur for Energy sector operations.",
+    "milestones": [
+      {
+        "id": "m23-1",
+        "name": "Phase 1 Foundation Handover",
+        "plannedDate": "2024-04-15",
+        "actualDate": "2024-04-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "RVPNL"
+      },
+      {
+        "id": "m23-2",
+        "name": "Core Installation & Structural Works",
+        "plannedDate": "2024-09-30",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "RVPNL"
+      },
+      {
+        "id": "m23-3",
+        "name": "Integrated Testing & Trial Operations",
+        "plannedDate": "2025-04-15",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "Rakesh Rathore"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-23-1",
+        "name": "Statutory Clearance & Handover",
+        "owner": "RVPNL",
+        "status": "Completed",
+        "delayDays": 0,
+        "dependsOn": []
+      },
+      {
+        "id": "act-23-2",
+        "name": "Core Construction Activity",
+        "owner": "Primary EPC",
+        "status": "Completed",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-23-1"
+        ]
+      },
+      {
+        "id": "act-23-3",
+        "name": "Integration & Commissioning",
+        "owner": "System Integrator",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-23-2"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r23-1",
+        "title": "Supply chain delivery risk with RVPNL",
+        "severity": "Low",
+        "probability": "Medium",
+        "impact": "Medium",
+        "owner": "RVPNL",
+        "status": "Open",
+        "recommendedAction": "Monitor vendor SLAs closely"
+      }
+    ],
+    "departments": [
+      "RVPNL",
+      "Primary EPC",
+      "System Integrator"
+    ]
+  },
+  {
+    "id": "proj-024",
+    "code": "PP-024",
+    "name": "Smart Freight Logistics Terminal",
+    "sector": "Roads",
+    "location": "Mumbai",
+    "manager": "Aditya Deshmukh",
+    "budget": 840,
+    "spent": 650,
+    "startDate": "2023-08-01",
+    "plannedEndDate": "2025-06-30",
+    "expectedEndDate": "2025-08-15",
+    "progress": 75,
+    "plannedProgress": 80,
+    "description": "Critical infrastructure asset in Mumbai for Roads sector operations.",
+    "milestones": [
+      {
+        "id": "m24-1",
+        "name": "Phase 1 Foundation Handover",
+        "plannedDate": "2024-04-15",
+        "actualDate": "2024-04-10",
+        "status": "Completed",
+        "delayDays": 0,
+        "owner": "CIDCO"
+      },
+      {
+        "id": "m24-2",
+        "name": "Core Installation & Structural Works",
+        "plannedDate": "2024-09-30",
+        "status": "In Progress",
+        "delayDays": 7,
+        "owner": "CIDCO"
+      },
+      {
+        "id": "m24-3",
+        "name": "Integrated Testing & Trial Operations",
+        "plannedDate": "2025-04-15",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "owner": "Aditya Deshmukh"
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "act-24-1",
+        "name": "Statutory Clearance & Handover",
+        "owner": "CIDCO",
+        "status": "In Progress",
+        "delayDays": 7,
+        "dependsOn": []
+      },
+      {
+        "id": "act-24-2",
+        "name": "Core Construction Activity",
+        "owner": "Primary EPC",
+        "status": "In Progress",
+        "delayDays": 3,
+        "dependsOn": [
+          "act-24-1"
+        ]
+      },
+      {
+        "id": "act-24-3",
+        "name": "Integration & Commissioning",
+        "owner": "System Integrator",
+        "status": "Upcoming",
+        "delayDays": 0,
+        "dependsOn": [
+          "act-24-2"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "r24-1",
+        "title": "Supply chain delivery risk with CIDCO",
+        "severity": "Medium",
+        "probability": "Medium",
+        "impact": "Medium",
+        "owner": "CIDCO",
+        "status": "Open",
+        "recommendedAction": "Monitor vendor SLAs closely"
+      }
+    ],
+    "departments": [
+      "CIDCO",
+      "Primary EPC",
+      "System Integrator"
+    ]
+  }
+];
