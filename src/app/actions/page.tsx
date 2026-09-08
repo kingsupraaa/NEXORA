@@ -159,7 +159,7 @@ export default function ActionsPage() {
                     >
                       {action.projectName}
                     </Link>
-                    <span>�</span>
+                    <span>×</span>
                     <span>Owner: <strong className="text-slate-700">{action.departmentOrOwner}</strong></span>
                   </div>
 

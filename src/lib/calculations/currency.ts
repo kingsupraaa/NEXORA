@@ -6,12 +6,12 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatINR(crores: number): string {
-  if (crores === undefined || crores === null || isNaN(crores)) return '?0 Cr';
+  if (crores === undefined || crores === null || isNaN(crores)) return '₹0 Cr';
   if (crores >= 1000) {
     const formatted = (crores / 1000).toFixed(2);
-    return `?${crores.toLocaleString('en-IN')} Cr`;
+    return `₹${crores.toLocaleString('en-IN')} Cr`;
   }
-  return `?${crores.toLocaleString('en-IN', { maximumFractionDigits: 1 })} Cr`;
+  return `₹${crores.toLocaleString('en-IN', { maximumFractionDigits: 1 })} Cr`;
 }
 
 export function formatPercent(value: number): string {

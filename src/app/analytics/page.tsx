@@ -175,7 +175,7 @@ export default function AnalyticsPage() {
               Average Health by Sector
             </h3>
             <p className="text-xs text-slate-500 mt-0.5">
-              Comparative health index (0�100) computed across infrastructure categories
+              Comparative health index (0×100) computed across infrastructure categories
             </p>
           </div>
 
@@ -270,7 +270,7 @@ export default function AnalyticsPage() {
               <div>
                 <h3 className="text-lg font-black text-slate-900">Executive Portfolio Briefing</h3>
                 <span className="text-[10px] font-bold uppercase text-slate-400">
-                  {summary.isAI ? 'AI Synthesized Brief' : 'Deterministic Intelligence'} � {new Date(summary.generatedAt).toLocaleDateString()}
+                  {summary.isAI ? 'AI Synthesized Brief' : 'Deterministic Intelligence'} × {new Date(summary.generatedAt).toLocaleDateString()}
                 </span>
               </div>
             </div>

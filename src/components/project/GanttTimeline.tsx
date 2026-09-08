@@ -23,11 +23,11 @@ export function GanttTimeline({
 }: GanttTimelineProps) {
   // Major phases derived from activities and milestones
   const phases = [
-    { id: 'p1', name: 'Land Acquisition & Clearances', progress: 40, status: 'Delayed', delayDays: 28, owner: 'Revenue Dept', dates: 'Q1 2024 � Q2 2024' },
-    { id: 'p2', name: 'Utility Shifting & Civil Earthwork', progress: 30, status: 'Delayed', delayDays: 14, owner: 'Electricity Board / PWD', dates: 'Q2 2024 � Q4 2024' },
-    { id: 'p3', name: 'Superstructure & Pier Construction', progress: 20, status: 'In Progress', delayDays: 0, owner: 'L&T Infra', dates: 'Q4 2024 � Q2 2025' },
-    { id: 'p4', name: 'Pavement Laying & Surfacing', progress: 0, status: 'Upcoming', delayDays: 0, owner: 'HCC', dates: 'Q2 2025 � Q4 2025' },
-    { id: 'p5', name: 'Signalling, Toll & Commissioning', progress: 0, status: 'Upcoming', delayDays: 0, owner: 'NHAI', dates: 'Q4 2025 � Q1 2026' }
+    { id: 'p1', name: 'Land Acquisition & Clearances', progress: 40, status: 'Delayed', delayDays: 28, owner: 'Revenue Dept', dates: 'Q1 2024 × Q2 2024' },
+    { id: 'p2', name: 'Utility Shifting & Civil Earthwork', progress: 30, status: 'Delayed', delayDays: 14, owner: 'Electricity Board / PWD', dates: 'Q2 2024 × Q4 2024' },
+    { id: 'p3', name: 'Superstructure & Pier Construction', progress: 20, status: 'In Progress', delayDays: 0, owner: 'L&T Infra', dates: 'Q4 2024 × Q2 2025' },
+    { id: 'p4', name: 'Pavement Laying & Surfacing', progress: 0, status: 'Upcoming', delayDays: 0, owner: 'HCC', dates: 'Q2 2025 × Q4 2025' },
+    { id: 'p5', name: 'Signalling, Toll & Commissioning', progress: 0, status: 'Upcoming', delayDays: 0, owner: 'NHAI', dates: 'Q4 2025 × Q1 2026' }
   ];
 
   return (

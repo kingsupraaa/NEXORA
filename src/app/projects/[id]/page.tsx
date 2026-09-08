@@ -162,7 +162,7 @@ export default async function ProjectDetailPage({
           </div>
 
           <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-[11px] font-mono text-slate-600 mb-4">
-            Overall = (Schedule�0.30) + (Budget�0.20) + (Milestone�0.20) + (Dependency�0.15) + (Risk�0.15)
+            Overall = (Schedule × 0.30) + (Budget × 0.20) + (Milestone × 0.20) + (Dependency × 0.15) + (Risk × 0.15)
           </div>
 
           <div className="space-y-3.5">

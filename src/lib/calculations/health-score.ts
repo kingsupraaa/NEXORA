@@ -9,7 +9,7 @@ import { Project, HealthScoreBreakdown, ProjectStatus } from '@/types';
  * Dependency Health   (weight 0.15)
  * Risk Health         (weight 0.15)
  * 
- * Overall = Schedule*0.30 + Budget*0.20 + Milestone*0.20 + Dependency*0.15 + Risk*0.15
+ * Overall = Schedule × 0.30 + Budget × 0.20 + Milestone × 0.20 + Dependency × 0.15 + Risk × 0.15
  * 
  * Status bands:
  *  - 80-100: "ON TRACK" (GREEN)

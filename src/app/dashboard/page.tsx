@@ -182,7 +182,7 @@ export default async function DashboardPage() {
               <div className="flex items-center justify-between gap-2 mb-3">
                 <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-rose-600 text-white text-[10px] font-extrabold uppercase tracking-wider">
                   <span className="w-2 h-2 rounded-full bg-white animate-ping" />
-                  RED ALERT � AI EARLY WARNING
+                  RED ALERT × AI EARLY WARNING
                 </div>
                 <span className="text-xs font-bold text-rose-800">
                   Health Score: {highestRisk.health.overallHealth}%
