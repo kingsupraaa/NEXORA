@@ -1,6 +1,68 @@
 {
   "projects": [
     {
+      "name": "BULLET TRAIN",
+      "code": "PP-026",
+      "sector": "Railways",
+      "location": "Mumbai",
+      "manager": "DEBARGHYA SAMADAR",
+      "budget": 10,
+      "spent": 1,
+      "startDate": "2026-09-08",
+      "plannedEndDate": "2027-09-09",
+      "expectedEndDate": "2027-09-09",
+      "progress": 10,
+      "plannedProgress": 15,
+      "milestones": [
+        {
+          "id": "m-init-1",
+          "name": "Site Survey & Statutory Approvals",
+          "plannedDate": "2027-09-09",
+          "status": "In Progress",
+          "delayDays": 0,
+          "owner": "DEBARGHYA SAMADAR"
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "act-init-1",
+          "name": "Site Mobilization & Approvals",
+          "owner": "DEBARGHYA SAMADAR",
+          "status": "In Progress",
+          "delayDays": 0,
+          "dependsOn": []
+        },
+        {
+          "id": "act-init-2",
+          "name": "Main Civil Execution",
+          "owner": "Primary Contractor",
+          "status": "Upcoming",
+          "delayDays": 0,
+          "dependsOn": [
+            "act-init-1"
+          ]
+        }
+      ],
+      "risks": [
+        {
+          "id": "r-init-1",
+          "title": "Right-of-way utility shifting clearance",
+          "severity": "Medium",
+          "probability": "Medium",
+          "impact": "Medium",
+          "owner": "DEBARGHYA SAMADAR",
+          "status": "Open",
+          "recommendedAction": "Convene joint site inspection with municipal authorities"
+        }
+      ],
+      "departments": [
+        "Railways Dept",
+        "Contractor Cell"
+      ],
+      "description": "Newly assigned infrastructure project in Mumbai for Railways sector operations.",
+      "id": "proj-026"
+    },
+    {
       "name": "Bengaluru Peripheral Metro Ring",
       "code": "PP-025",
       "sector": "Metro",
@@ -2328,5 +2390,5 @@
       "updatedAt": "2026-09-07T17:49:53.938Z"
     }
   },
-  "lastUpdated": "2026-09-07T17:48:23.960Z"
+  "lastUpdated": "2026-09-08T06:31:35.684Z"
 }
