@@ -1,6 +1,68 @@
 {
   "projects": [
     {
+      "name": "fiem",
+      "code": "PP-027",
+      "sector": "Railways",
+      "location": "Kolkata",
+      "manager": "som",
+      "budget": 50,
+      "spent": 5,
+      "startDate": "2026-09-09",
+      "plannedEndDate": "2027-09-09",
+      "expectedEndDate": "2027-09-09",
+      "progress": 10,
+      "plannedProgress": 15,
+      "milestones": [
+        {
+          "id": "m-init-1",
+          "name": "Site Survey & Statutory Approvals",
+          "plannedDate": "2027-09-09",
+          "status": "In Progress",
+          "delayDays": 0,
+          "owner": "som"
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "act-init-1",
+          "name": "Site Mobilization & Approvals",
+          "owner": "som",
+          "status": "In Progress",
+          "delayDays": 0,
+          "dependsOn": []
+        },
+        {
+          "id": "act-init-2",
+          "name": "Main Civil Execution",
+          "owner": "Primary Contractor",
+          "status": "Upcoming",
+          "delayDays": 0,
+          "dependsOn": [
+            "act-init-1"
+          ]
+        }
+      ],
+      "risks": [
+        {
+          "id": "r-init-1",
+          "title": "Right-of-way utility shifting clearance",
+          "severity": "Medium",
+          "probability": "Medium",
+          "impact": "Medium",
+          "owner": "som",
+          "status": "Open",
+          "recommendedAction": "Convene joint site inspection with municipal authorities"
+        }
+      ],
+      "departments": [
+        "Railways Dept",
+        "Contractor Cell"
+      ],
+      "description": "Newly assigned infrastructure project in Kolkata for Railways sector operations.",
+      "id": "proj-027"
+    },
+    {
       "name": "BULLET TRAIN",
       "code": "PP-026",
       "sector": "Railways",
@@ -2390,5 +2452,5 @@
       "updatedAt": "2026-09-07T17:49:53.938Z"
     }
   },
-  "lastUpdated": "2026-09-08T06:31:35.684Z"
+  "lastUpdated": "2026-09-09T06:08:07.242Z"
 }
