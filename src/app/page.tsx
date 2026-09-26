@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { 
   Activity, 
@@ -200,7 +200,7 @@ export default function LandingPage() {
 
               {/* Bottom Circle Arrow Button */}
               <Link
-                href="/actions"
+                href="/projects/proj-001#actions"
                 className="w-10 h-10 rounded-full bg-gray-100 text-gray-700 flex items-center justify-center hover:bg-coral-600 hover:text-white shadow-sm transition-all hover:scale-110"
               >
                 <ArrowRight className="w-4 h-4 stroke-[2.5]" />

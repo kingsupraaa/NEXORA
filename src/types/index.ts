@@ -140,7 +140,7 @@ export interface ActionItem {
   projectName: string;
   projectCode: string;
   title: string;
-  type: 'BOTTLENECK' | 'RISK';
+  type: 'BOTTLENECK' | 'RISK' | 'TASK';
   severity: RiskSeverity;
   departmentOrOwner: string;
   impact: string;
@@ -148,6 +148,8 @@ export interface ActionItem {
   status: 'Open' | 'Assigned' | 'Escalated' | 'Resolved';
   assignedTo?: string;
   escalatedTo?: string;
+  dueDate?: string;
+  createdAt?: string;
   updatedAt: string;
 }
 

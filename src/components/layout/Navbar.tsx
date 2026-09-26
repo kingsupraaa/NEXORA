@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
 import Link from 'next/link';
@@ -23,8 +23,6 @@ export function Navbar() {
     { href: '/', label: 'Home' },
     { href: '/dashboard', label: 'Dashboard' },
     { href: '/projects', label: 'Projects' },
-    { href: '/risks', label: 'Risks' },
-    { href: '/actions', label: 'Actions' },
     { href: '/alerts', label: 'Alerts', badge: 'Live' },
     { href: '/analytics', label: 'Analytics' },
   ];

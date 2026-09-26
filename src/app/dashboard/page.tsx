@@ -65,58 +65,64 @@ export default async function DashboardPage() {
 
         <div className="flex items-center gap-3">
           <Link
-            href="/actions"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-teal-700 hover:bg-teal-800 text-white text-xs font-bold shadow-sm transition-colors"
+            href="/projects"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-coral-600 hover:bg-coral-700 text-white text-xs font-bold shadow-md shadow-coral-600/20 transition-all hover:scale-105"
           >
-            <span>Open Action Center</span>
+            <span>Explore Projects & Actions</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>
 
-      {/* 6 Top KPI Cards */}
+      {/* 6 Top KPI Cards - Clickable to access filtered projects */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
         <MetricCard
           title="Total Projects"
           value={metrics.totalProjects}
           icon={FolderKanban}
-          subtitle="Active Portfolio"
+          subtitle="Click to view all"
           variant="default"
+          href="/projects?status=ALL"
         />
         <MetricCard
           title="On Track"
           value={metrics.onTrackCount}
           icon={CheckCircle2}
-          subtitle={`${Math.round((metrics.onTrackCount / metrics.totalProjects) * 100)}% of total`}
+          subtitle={`${Math.round((metrics.onTrackCount / metrics.totalProjects) * 100)}% · Click to view`}
           variant="success"
+          href="/projects?status=ON%20TRACK"
         />
         <MetricCard
           title="At Risk"
           value={metrics.atRiskCount}
           icon={AlertTriangle}
-          subtitle={`${Math.round((metrics.atRiskCount / metrics.totalProjects) * 100)}% of total`}
+          subtitle={`${Math.round((metrics.atRiskCount / metrics.totalProjects) * 100)}% · Click to view`}
           variant="warning"
+          href="/projects?status=AT%20RISK"
         />
         <MetricCard
-          title="Delayed"
+          title="Critical Delayed"
           value={metrics.delayedCount}
           icon={AlertOctagon}
-          subtitle={`${Math.round((metrics.delayedCount / metrics.totalProjects) * 100)}% of total`}
+          subtitle={`${Math.round((metrics.delayedCount / metrics.totalProjects) * 100)}% · Click to view`}
           variant="danger"
+          href="/projects?status=DELAYED"
         />
         <MetricCard
           title="Budget Utilization"
           value={`${metrics.averageUtilization}%`}
           icon={IndianRupee}
-          subtitle={`${formatINR(metrics.totalSpent)} spent`}
+          subtitle={`${formatINR(metrics.totalSpent)} spent · View`}
           variant="teal"
+          href="/projects?sort=budget"
         />
         <MetricCard
           title="Critical Risks"
           value={metrics.criticalRisksCount}
           icon={ShieldAlert}
-          subtitle="Requiring Action"
+          subtitle="Requiring Action · View"
           variant="danger"
+          href="/projects?view=risks&risk=Critical"
         />
       </div>
 

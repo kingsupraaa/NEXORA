@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getProjectById } from '@/lib/db/store';
+import { getProjectById, getActionItemsForProject } from '@/lib/db/store';
 import { calculateHealthScore } from '@/lib/calculations/health-score';
 import { detectBottleneck } from '@/lib/calculations/dependency-graph';
 import { generateRiskExplanation } from '@/lib/ai/risk-explainer';
@@ -11,6 +11,7 @@ import { GanttTimeline } from '@/components/project/GanttTimeline';
 import { DependencyGraphView } from '@/components/project/DependencyGraphView';
 import { WhatIfSimulator } from '@/components/project/WhatIfSimulator';
 import { WhyAtRiskCard } from '@/components/project/WhyAtRiskCard';
+import { ProjectActionCenter } from '@/components/project/ProjectActionCenter';
 import { formatINR, formatPercent } from '@/lib/calculations/currency';
 import { 
   ArrowLeft, 
@@ -26,7 +27,8 @@ import {
   Zap,
   Clock,
   CheckCircle2,
-  Building
+  Building,
+  CheckSquare
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -45,6 +47,7 @@ export default async function ProjectDetailPage({
   const health = calculateHealthScore(project);
   const bottleneck = detectBottleneck(project);
   const explanation = await generateRiskExplanation(project);
+  const initialActions = getActionItemsForProject(project.id);
 
   const remainingBudget = Math.max(0, project.budget - project.spent);
 
@@ -54,13 +57,20 @@ export default async function ProjectDetailPage({
       <div className="flex items-center justify-between mb-6">
         <Link
           href="/projects"
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-teal-700 transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-coral-600 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Projects</span>
         </Link>
 
         <div className="flex items-center gap-2">
+          <a
+            href="#actions"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-coral-50 hover:bg-coral-100 text-coral-700 text-xs font-bold border border-coral-200 transition-colors"
+          >
+            <CheckSquare className="w-3.5 h-3.5" />
+            <span>Tasks & Actions ({initialActions.length})</span>
+          </a>
           {project.id === 'proj-001' && (
             <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-extrabold uppercase">
               <Zap className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
@@ -278,6 +288,9 @@ export default async function ProjectDetailPage({
       <div className="mb-8">
         <WhyAtRiskCard project={project} initialExplanation={explanation} />
       </div>
+
+      {/* Project Action Center & Task Assignment */}
+      <ProjectActionCenter project={project} initialActions={initialActions} />
 
       {/* What-If Simulation Engine */}
       <div className="mb-8">

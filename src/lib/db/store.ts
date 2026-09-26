@@ -10,6 +10,7 @@ const DB_FILE = path.join(process.cwd(), 'data-store.json');
 interface DatabaseSchema {
   projects: Project[];
   actionOverrides: Record<string, { status: 'Open' | 'Assigned' | 'Escalated' | 'Resolved'; assignedTo?: string; escalatedTo?: string; updatedAt: string }>;
+  customActions?: ActionItem[];
   lastUpdated: string;
 }
 
@@ -17,7 +18,9 @@ function getDatabase(): DatabaseSchema {
   try {
     if (fs.existsSync(DB_FILE)) {
       const data = fs.readFileSync(DB_FILE, 'utf-8');
-      return JSON.parse(data);
+      const parsed = JSON.parse(data);
+      if (!parsed.customActions) parsed.customActions = [];
+      return parsed;
     }
   } catch (err) {
     console.error('Error reading data-store.json, resetting to default', err);
@@ -26,6 +29,7 @@ function getDatabase(): DatabaseSchema {
   const initial: DatabaseSchema = {
     projects: INITIAL_PROJECTS,
     actionOverrides: {},
+    customActions: [],
     lastUpdated: new Date().toISOString()
   };
   saveDatabase(initial);
@@ -126,6 +130,20 @@ export function getAllActionItems(): ActionItem[] {
     }
   }
 
+  // Include custom tasks created inside individual projects
+  if (db.customActions && Array.isArray(db.customActions)) {
+    for (const customTask of db.customActions) {
+      const override = db.actionOverrides[customTask.id];
+      actions.push({
+        ...customTask,
+        status: override ? override.status : customTask.status,
+        assignedTo: override?.assignedTo || customTask.assignedTo,
+        escalatedTo: override?.escalatedTo || customTask.escalatedTo,
+        updatedAt: override?.updatedAt || customTask.updatedAt
+      });
+    }
+  }
+
   // Sort critical first, then open/escalated first
   return actions.sort((a, b) => {
     if (a.severity === 'Critical' && b.severity !== 'Critical') return -1;
@@ -134,6 +152,58 @@ export function getAllActionItems(): ActionItem[] {
     if (b.status === 'Open' && a.status === 'Resolved') return 1;
     return 0;
   });
+}
+
+export function getActionItemsForProject(projectId: string): ActionItem[] {
+  const allActions = getAllActionItems();
+  return allActions.filter(
+    a => a.projectId === projectId || a.projectCode.toLowerCase() === projectId.toLowerCase()
+  );
+}
+
+export function createProjectActionItem(item: {
+  projectId: string;
+  title: string;
+  assignedTo: string;
+  severity?: 'Critical' | 'High' | 'Medium' | 'Low';
+  departmentOrOwner?: string;
+  impact?: string;
+  recommendedAction?: string;
+  dueDate?: string;
+}): ActionItem {
+  const db = getDatabase();
+  const project = db.projects.find(p => p.id === item.projectId || p.code.toLowerCase() === item.projectId.toLowerCase());
+  
+  const projectId = project ? project.id : item.projectId;
+  const projectName = project ? project.name : 'Project Task';
+  const projectCode = project ? project.code : 'PP-TASK';
+
+  const newAction: ActionItem = {
+    id: `action-task-${projectId}-${Date.now()}`,
+    projectId,
+    projectName,
+    projectCode,
+    title: item.title,
+    type: 'TASK',
+    severity: item.severity || 'Medium',
+    departmentOrOwner: item.departmentOrOwner || (project ? project.manager : 'Project Cell'),
+    impact: item.impact || `Operational task assigned to ${item.assignedTo}`,
+    recommendedAction: item.recommendedAction || item.title,
+    status: 'Assigned',
+    assignedTo: item.assignedTo,
+    dueDate: item.dueDate,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  };
+
+  if (!db.customActions) {
+    db.customActions = [];
+  }
+  db.customActions.unshift(newAction);
+  db.lastUpdated = new Date().toISOString();
+  saveDatabase(db);
+
+  return newAction;
 }
 
 export function updateActionItem(
@@ -147,6 +217,17 @@ export function updateActionItem(
     escalatedTo: update.escalatedTo,
     updatedAt: new Date().toISOString()
   };
+
+  // If this action was a custom task, update it in customActions array
+  if (db.customActions) {
+    const targetTask = db.customActions.find(t => t.id === actionId);
+    if (targetTask) {
+      targetTask.status = update.status;
+      if (update.assignedTo) targetTask.assignedTo = update.assignedTo;
+      if (update.escalatedTo) targetTask.escalatedTo = update.escalatedTo;
+      targetTask.updatedAt = new Date().toISOString();
+    }
+  }
 
   // If this action was linked to a risk, update the risk in project
   if (actionId.includes('-risk-')) {
