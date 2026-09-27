@@ -67,6 +67,41 @@ export function createProject(projectData: Omit<Project, 'id'> & { id?: string }
   return newProject;
 }
 
+export function importProjectsBulk(projectsData: (Omit<Project, 'id'> & { id?: string })[]): Project[] {
+  const db = getDatabase();
+  const created: Project[] = [];
+
+  for (const item of projectsData) {
+    const nextNum = db.projects.length + 1;
+    const numStr = nextNum < 10 ? '00' + nextNum : (nextNum < 100 ? '0' + nextNum : '' + nextNum);
+    const newProj: Project = {
+      ...item,
+      id: item.id || `proj-${numStr}`,
+      code: item.code || `PP-${numStr}`,
+      milestones: item.milestones || [
+        {
+          id: `m-imp-${numStr}-1`,
+          name: 'Milestone Execution Phase 1',
+          plannedDate: item.plannedEndDate || '2026-06-30',
+          status: 'In Progress',
+          delayDays: 0,
+          owner: item.manager || 'Project Incharge'
+        }
+      ],
+      dependencies: item.dependencies || [],
+      risks: item.risks || [],
+      departments: item.departments || [item.sector + ' Dept'],
+      description: item.description || `Ingested capital infrastructure asset in ${item.location} (${item.sector}).`
+    };
+    db.projects.unshift(newProj);
+    created.push(newProj);
+  }
+
+  db.lastUpdated = new Date().toISOString();
+  saveDatabase(db);
+  return created;
+}
+
 export function getAllProjects(): Project[] {
   const db = getDatabase();
   return db.projects;

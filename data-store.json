@@ -1,6 +1,68 @@
 {
   "projects": [
     {
+      "name": "kollkata roadway",
+      "code": "PP-028",
+      "sector": "Roads",
+      "location": "Kolkata",
+      "manager": "sukuumar ray",
+      "budget": 500,
+      "spent": 0,
+      "startDate": "2026-09-27",
+      "plannedEndDate": "2027-09-27",
+      "expectedEndDate": "2027-09-27",
+      "progress": 0,
+      "plannedProgress": 10,
+      "milestones": [
+        {
+          "id": "m-init-1",
+          "name": "Site Survey & Statutory Approvals",
+          "plannedDate": "2027-09-27",
+          "status": "In Progress",
+          "delayDays": 0,
+          "owner": "sukuumar ray"
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "act-init-1",
+          "name": "Site Mobilization & Approvals",
+          "owner": "sukuumar ray",
+          "status": "In Progress",
+          "delayDays": 0,
+          "dependsOn": []
+        },
+        {
+          "id": "act-init-2",
+          "name": "Main Civil Execution",
+          "owner": "Primary Contractor",
+          "status": "Upcoming",
+          "delayDays": 0,
+          "dependsOn": [
+            "act-init-1"
+          ]
+        }
+      ],
+      "risks": [
+        {
+          "id": "r-init-1",
+          "title": "Clearance coordination with Roads Dept",
+          "severity": "Low",
+          "probability": "Medium",
+          "impact": "Medium",
+          "owner": "sukuumar ray",
+          "status": "Open",
+          "recommendedAction": "Schedule weekly inter-agency alignment review"
+        }
+      ],
+      "departments": [
+        "Roads Dept",
+        "Contractor Cell"
+      ],
+      "description": "Newly assigned infrastructure project in Kolkata for Roads sector operations.",
+      "id": "proj-028"
+    },
+    {
       "name": "fiem",
       "code": "PP-027",
       "sector": "Railways",
@@ -2443,16 +2505,53 @@
   ],
   "actionOverrides": {
     "action-bn-proj-001-act-1-1": {
-      "status": "Escalated",
-      "escalatedTo": "Roads Principal Secretary",
-      "updatedAt": "2026-09-26T18:00:07.082Z"
+      "status": "Resolved",
+      "updatedAt": "2026-09-27T05:49:11.072Z"
     },
     "action-risk-proj-001-r1-1": {
-      "status": "Assigned",
-      "assignedTo": "Senior Project Officer",
-      "updatedAt": "2026-09-07T17:49:53.938Z"
+      "status": "Resolved",
+      "updatedAt": "2026-09-27T05:49:03.299Z"
+    },
+    "action-risk-proj-001-r1-2": {
+      "status": "Resolved",
+      "updatedAt": "2026-09-27T05:49:07.446Z"
     }
   },
-  "lastUpdated": "2026-09-09T06:08:07.242Z",
-  "customActions": []
+  "lastUpdated": "2026-09-27T05:50:11.918Z",
+  "customActions": [
+    {
+      "id": "action-task-proj-001-1790488211918",
+      "projectId": "proj-001",
+      "projectName": "East-West Highway Expansion",
+      "projectCode": "PP-001",
+      "title": "Close Risk: Land approval pending with Revenue Dept",
+      "type": "TASK",
+      "severity": "Critical",
+      "departmentOrOwner": "Revenue Dept",
+      "impact": "Reduces project risk penalty by 15% and protects baseline budget.",
+      "recommendedAction": "Escalate to department head immediately and fast-track rehabilitation compensation",
+      "status": "Assigned",
+      "assignedTo": "Revenue Dept",
+      "dueDate": "2026-10-02",
+      "createdAt": "2026-09-27T05:50:11.918Z",
+      "updatedAt": "2026-09-27T05:50:11.918Z"
+    },
+    {
+      "id": "action-task-proj-001-1790488128318",
+      "projectId": "proj-001",
+      "projectName": "East-West Highway Expansion",
+      "projectCode": "PP-001",
+      "title": "Resolve Critical Dependency with Revenue Dept",
+      "type": "TASK",
+      "severity": "Critical",
+      "departmentOrOwner": "Revenue Dept",
+      "impact": "Recovers baseline schedule health (+27 pts).",
+      "recommendedAction": "Fast-track approvals for \"Land Acquisition Clearance\" through priority coordination review.",
+      "status": "Assigned",
+      "assignedTo": "Suresh Bannerjee",
+      "dueDate": "2026-10-02",
+      "createdAt": "2026-09-27T05:48:48.318Z",
+      "updatedAt": "2026-09-27T05:48:48.318Z"
+    }
+  ]
 }

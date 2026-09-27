@@ -4,14 +4,13 @@ import { notFound } from 'next/navigation';
 import { getProjectById, getActionItemsForProject } from '@/lib/db/store';
 import { calculateHealthScore } from '@/lib/calculations/health-score';
 import { detectBottleneck } from '@/lib/calculations/dependency-graph';
-import { generateRiskExplanation } from '@/lib/ai/risk-explainer';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { HealthGauge } from '@/components/ui/HealthGauge';
 import { GanttTimeline } from '@/components/project/GanttTimeline';
 import { DependencyGraphView } from '@/components/project/DependencyGraphView';
 import { WhatIfSimulator } from '@/components/project/WhatIfSimulator';
-import { WhyAtRiskCard } from '@/components/project/WhyAtRiskCard';
 import { ProjectActionCenter } from '@/components/project/ProjectActionCenter';
+import { ProjectAIEngine } from '@/components/project/ProjectAIEngine';
 import { formatINR, formatPercent } from '@/lib/calculations/currency';
 import { 
   ArrowLeft, 
@@ -46,7 +45,6 @@ export default async function ProjectDetailPage({
 
   const health = calculateHealthScore(project);
   const bottleneck = detectBottleneck(project);
-  const explanation = await generateRiskExplanation(project);
   const initialActions = getActionItemsForProject(project.id);
 
   const remainingBudget = Math.max(0, project.budget - project.spent);
@@ -284,10 +282,12 @@ export default async function ProjectDetailPage({
         </div>
       </div>
 
-      {/* Why is this project at risk? Card */}
-      <div className="mb-8">
-        <WhyAtRiskCard project={project} initialExplanation={explanation} />
-      </div>
+      {/* Deterministic AI Intelligence Engine */}
+      <ProjectAIEngine
+        project={project}
+        health={health}
+        bottleneck={bottleneck}
+      />
 
       {/* Project Action Center & Task Assignment */}
       <ProjectActionCenter project={project} initialActions={initialActions} />

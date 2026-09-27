@@ -25,7 +25,8 @@ import {
   FolderKanban,
   ArrowRight,
   Flame,
-  Layers
+  Layers,
+  Zap
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -57,6 +58,7 @@ function ProjectsContent() {
   const initialStatusParam = searchParams.get('status')?.toUpperCase() || 'ALL';
   const initialRiskParam = searchParams.get('risk') || 'ALL';
   const initialViewParam = searchParams.get('view') === 'risks' ? 'RISKS' : 'PORTFOLIO';
+  const initialHighValueParam = searchParams.get('highValue') === 'true';
 
   const [projects, setProjects] = useState<any[]>([]);
   const [activeView, setActiveView] = useState<'PORTFOLIO' | 'RISKS'>(initialViewParam);
@@ -64,6 +66,7 @@ function ProjectsContent() {
     ['ALL', 'ON TRACK', 'AT RISK', 'DELAYED'].includes(initialStatusParam) ? initialStatusParam : 'ALL'
   );
   const [riskFilter, setRiskFilter] = useState<string>(initialRiskParam);
+  const [highValueOnly, setHighValueOnly] = useState<boolean>(initialHighValueParam);
   const [search, setSearch] = useState('');
   const [sectorFilter, setSectorFilter] = useState<string>('ALL');
   const [isLoading, setIsLoading] = useState(true);
@@ -78,6 +81,10 @@ function ProjectsContent() {
     const risk = searchParams.get('risk');
     if (risk) {
       setRiskFilter(risk);
+    }
+    const highVal = searchParams.get('highValue');
+    if (highVal !== null) {
+      setHighValueOnly(highVal === 'true');
     }
     const view = searchParams.get('view');
     if (view === 'risks') {
@@ -123,15 +130,16 @@ function ProjectsContent() {
       const matchesStatus = statusFilter === 'ALL' || p.health.status === statusFilter;
       const matchesRisk = riskFilter === 'ALL' || p.riskInfo.level.toLowerCase() === riskFilter.toLowerCase();
       const matchesSector = sectorFilter === 'ALL' || p.sector === sectorFilter;
+      const matchesHighValue = !highValueOnly || (p.budget && p.budget >= 1000);
       const matchesSearch = 
         p.name.toLowerCase().includes(search.toLowerCase()) ||
         p.code.toLowerCase().includes(search.toLowerCase()) ||
         p.location.toLowerCase().includes(search.toLowerCase()) ||
         p.sector.toLowerCase().includes(search.toLowerCase());
 
-      return matchesStatus && matchesRisk && matchesSector && matchesSearch;
+      return matchesStatus && matchesRisk && matchesSector && matchesHighValue && matchesSearch;
     });
-  }, [projectsWithRisk, statusFilter, riskFilter, sectorFilter, search]);
+  }, [projectsWithRisk, statusFilter, riskFilter, sectorFilter, highValueOnly, search]);
 
   // Aggregate all portfolio risks for the integrated Risk Registry view
   const allPortfolioRisks = useMemo(() => {
@@ -324,12 +332,29 @@ function ProjectsContent() {
             </select>
           )}
 
-          {(statusFilter !== 'ALL' || riskFilter !== 'ALL' || sectorFilter !== 'ALL' || search) && (
+          {/* High Value Filter Button */}
+          {activeView === 'PORTFOLIO' && (
+            <button
+              onClick={() => setHighValueOnly(!highValueOnly)}
+              className={cn(
+                'px-3 py-2.5 rounded-xl border text-xs font-bold transition-all flex items-center gap-1.5',
+                highValueOnly
+                  ? 'bg-amber-600 border-amber-600 text-white shadow-sm'
+                  : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
+              )}
+            >
+              <Zap className={cn('w-3.5 h-3.5', highValueOnly ? 'text-amber-200 fill-amber-200' : 'text-amber-500')} />
+              <span>High Value (≥ ₹1,000 Cr)</span>
+            </button>
+          )}
+
+          {(statusFilter !== 'ALL' || riskFilter !== 'ALL' || sectorFilter !== 'ALL' || highValueOnly || search) && (
             <button
               onClick={() => {
                 setStatusFilter('ALL');
                 setRiskFilter('ALL');
                 setSectorFilter('ALL');
+                setHighValueOnly(false);
                 setSearch('');
               }}
               className="px-2.5 py-1.5 text-xs font-bold text-coral-600 hover:underline"
